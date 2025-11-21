@@ -1,17 +1,19 @@
+import os
 import asyncio
 from telethon import TelegramClient
+from telethon.sessions import StringSession
 
-# ========== CONFIG ==========
-API_ID = 32237619
-API_HASH = "69773d4b41c196f0334ea4a4556ea929"
-SESSION_NAME = "vanz_userbot"
+API_ID = 36235512
+API_HASH = "e4e449529f535e74ecf2153e740e888e"
 
-# Target pengiriman
-TARGETS = ["Jualan_Masker"]  # bisa tambah: ["Jualan_Masker", "GrupLain", ...]
+# ambil dari Railway Variables
+SESSION_STRING = os.getenv("SESSION_STRING")
 
-# Interval kirim (detik)
-INTERVAL_SECONDS = 300  # 300 detik = 5 menit
-# Ubah ke 60 untuk 1 menit, atau 30 untuk 30 detik
+# TARGET dulu ke 'me' (Saved Messages) buat test
+TARGETS = ["me"]  # nanti ganti ke "Jualan_Masker" kalau udah yakin jalan
+
+# interval kirim (detik)
+INTERVAL_SECONDS = 300  # 300 = 5 menit, boleh ganti 60 / 30
 
 PROMO_TEXT = """
 🔥 PROMO GILA VANZSHOP.ID 🔥
@@ -59,15 +61,20 @@ Head (Full Access) → Rp 50.000
 
 🌐 VanzShop.ID
 """
-# ============================
-
 
 async def send_loop():
-    client = TelegramClient(SESSION_NAME, API_ID, API_HASH)
+    if not SESSION_STRING:
+        raise RuntimeError("SESSION_STRING belum di-set di Railway Variables")
+
+    client = TelegramClient(StringSession(SESSION_STRING), API_ID, API_HASH)
     await client.start()
-    print("Userbot aktif. Mulai auto-kirim...")
+    me = await client.get_me()
+    print(f"Login sebagai: {me.first_name} (@{me.username})")
+    print(f"Target: {TARGETS}")
+    print(f"Interval: {INTERVAL_SECONDS} detik\n")
 
     while True:
+        print("Mengirim promo...")
         for target in TARGETS:
             try:
                 await client.send_message(target, PROMO_TEXT)
