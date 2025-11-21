@@ -7,7 +7,7 @@ API_HASH = "69773d4b41c196f0334ea4a4556ea929"
 SESSION_NAME = "vanz_userbot"
 
 # Target pengiriman
-TARGETS = ["Jualan_Masker"]
+TARGETS = ["Jualan_Masker"]  # bisa tambah: ["Jualan_Masker", "GrupLain", ...]
 
 # Interval kirim (detik)
 INTERVAL_SECONDS = 300  # 300 detik = 5 menit
@@ -68,4 +68,16 @@ async def send_loop():
     print("Userbot aktif. Mulai auto-kirim...")
 
     while True:
-        for target in TARG
+        for target in TARGETS:
+            try:
+                await client.send_message(target, PROMO_TEXT)
+                print(f"✔ Terkirim ke {target}")
+            except Exception as e:
+                print(f"✖ Gagal kirim ke {target}: {e}")
+
+        print(f"Tunggu {INTERVAL_SECONDS} detik...\n")
+        await asyncio.sleep(INTERVAL_SECONDS)
+
+
+if __name__ == "__main__":
+    asyncio.run(send_loop())
