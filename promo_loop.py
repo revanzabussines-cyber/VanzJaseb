@@ -13,7 +13,7 @@ SESSION_STRING = os.getenv("SESSION_STRING")
 TARGETS = ["https://t.me/Jualan_Masker"]
 
 # interval kirim (detik)
-INTERVAL_SECONDS = 300  # 300 = 5 menit, boleh ganti 60 / 30
+INTERVAL_SECONDS = 60  # 300 = 5 menit, boleh ganti 60 / 30
 
 PROMO_TEXT = """
 🔥 PROMO GILA VANZSHOP.ID 🔥
