@@ -10,7 +10,7 @@ API_HASH = "e4e449529f535e74ecf2153e740e888e"
 SESSION_STRING = os.getenv("SESSION_STRING")
 
 # TARGET dulu ke 'me' (Saved Messages) buat test
-TARGETS = ["me"]  # nanti ganti ke "Jualan_Masker" kalau udah yakin jalan
+TARGETS = ["https://t.me/Jualan_Masker"]
 
 # interval kirim (detik)
 INTERVAL_SECONDS = 300  # 300 = 5 menit, boleh ganti 60 / 30
