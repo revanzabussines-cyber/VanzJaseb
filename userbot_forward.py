@@ -13,8 +13,8 @@ SESSION_NAME = "vanz_userbot"   # nama file session, bebas
 SOURCE = "VanzDisscussion"      # bisa "VanzDisscussion" atau link "https://t.me/VanzDisscussion"
 
 # Target forward (boleh banyak)
-TARGETS = [
-    "Jualan_Masker",            # contoh, bisa grup / channel / user
+TARGETS = ["https://t.me/Jualan_Masker"]
+                # contoh, bisa grup / channel / user
     # "NamaTargetLain",
 ]
 
